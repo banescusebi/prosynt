@@ -6,7 +6,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get -y install build-essential checkinstall && \
     apt-get -y install gcc g++ && \
-    apt-get -y install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev && \
+    apt-get -y install python2.7 python-pip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 USER $USERNAME
@@ -18,7 +18,7 @@ WORKDIR /workd
 ADD . /workd
 
 # Install any needed packages specified in requirements.txt
-RUN sudo pip install --trusted-host pypi.python.org -r requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Run app.py when the container launches
 CMD ["python", "test1.py"]
