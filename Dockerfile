@@ -18,7 +18,7 @@ WORKDIR /workd
 ADD . /workd
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN sudo pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Run app.py when the container launches
 CMD ["python", "test1.py"]
