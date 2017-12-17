@@ -1,21 +1,8 @@
 # Use an official Python runtime as a parent image
 FROM ubuntu:16.04
 
-ENV USERNAME prosynt
-ENV HOME=/home/$USERNAME
-
-USER root
-
-# Facilitate X11 Forwarding
-RUN echo "$USERNAME:$USERNAME" | chpasswd && \
-    usermod --shell /bin/bash $USERNAME && \
-    usermod -aG sudo $USERNAME && \
-    echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-# Replace 1000 with your user/group id
-    usermod  --uid 1000 $USERNAME && \
-    groupmod --gid 1000 $USERNAME && \
 # Install needed packages
-    apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get -y install build-essential checkinstall && \
     apt-get -y install gcc g++ && \
